@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Vm } from './vm.model';  // Asegúrate de definir un modelo para la VM
+import { VirtualMachine } from '@VmModels/vm.model';
 
 @Injectable({
 	providedIn: 'root'
@@ -11,20 +11,20 @@ export class VmService {
 
 	constructor(private http: HttpClient) { }
 
-	getVms(): Observable<Vm[]> {
-		return this.http.get<Vm[]>(this.apiUrl);
+	getVms(): Observable<VirtualMachine[]> {
+		return this.http.get<VirtualMachine[]>(this.apiUrl);
 	}
 
-	getVm(id: string): Observable<Vm> {
-		return this.http.get<Vm>(`${this.apiUrl}/${id}`);
+	getVm(id: string): Observable<VirtualMachine> {
+		return this.http.get<VirtualMachine>(`${this.apiUrl}/${id}`);
 	}
 
-	createVm(vm: Vm): Observable<Vm> {
-		return this.http.post<Vm>(this.apiUrl, vm);
+	createVm(vm: VirtualMachine): Observable<VirtualMachine> {
+		return this.http.post<VirtualMachine>(this.apiUrl, vm);
 	}
 
-	updateVm(id: string, vm: Vm): Observable<Vm> {
-		return this.http.put<Vm>(`${this.apiUrl}/${id}`, vm);
+	updateVm(id: string, vm: VirtualMachine): Observable<VirtualMachine> {
+		return this.http.put<VirtualMachine>(`${this.apiUrl}/${id}`, vm);
 	}
 
 	deleteVm(id: string): Observable<void> {
