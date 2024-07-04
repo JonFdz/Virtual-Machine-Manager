@@ -1,12 +1,53 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VmService } from '@services/vm.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { VirtualMachine } from '@vm/models/vm.model';
 
 @Component({
   selector: 'app-vm-form',
-  standalone: true,
-  imports: [],
   templateUrl: './vm-form.component.html',
-  styleUrl: './vm-form.component.scss'
+  styleUrls: ['./vm-form.component.css']
 })
-export class VmFormComponent {
+export class VmFormComponent implements OnInit {
+  vmForm: FormGroup;
+  isEdit: boolean = false;
+  vmId: string | null = null;
 
+  constructor(
+    private fb: FormBuilder,
+    private vmService: VmService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
+    this.vmForm = this.fb.group({
+      name: ['', Validators.required],
+      status: ['', Validators.required]
+      // Otros campos relevantes
+    });
+  }
+
+  ngOnInit(): void {
+    this.vmId = this.route.snapshot.paramMap.get('id');
+    if (this.vmId) {
+      this.isEdit = true;
+      this.vmService.getVm(this.vmId).subscribe(data => {
+        this.vmForm.patchValue(data);
+      });
+    }
+  }
+
+  onSubmit(): void {
+    if (this.vmForm.valid) {
+      if (this.isEdit && this.vmId) {
+        this.vmService.updateVm(this.vmId, this.vmForm.value).subscribe(() => {
+          this.router.navigate(['/']);
+        });
+      } else {
+        this.vmService.createVm(this.vmForm.value).subscribe(() => {
+          this.router.navigate(['/']);
+        });
+      }
+    }
+  }
 }

@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { VmService } from '@services/vm.service';
+import { VirtualMachine } from '@vm/models/vm.model';
 
 @Component({
-  selector: 'app-vm-list',
-  standalone: true,
-  imports: [],
-  templateUrl: './vm-list.component.html',
-  styleUrl: './vm-list.component.scss'
+	selector: 'app-vm-list',
+	templateUrl: './vm-list.component.html',
+	styleUrls: ['./vm-list.component.css']
 })
-export class VmListComponent {
+export class VmListComponent implements OnInit {
+	vms: VirtualMachine[] = [];
 
+	constructor(private vmService: VmService) { }
+
+	ngOnInit(): void {
+		this.vmService.getVms().subscribe(data => {
+			this.vms = data;
+		});
+	}
 }
