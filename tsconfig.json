@@ -25,11 +25,8 @@
 		],
 		"baseUrl": "./src",
 		"paths": {
-			"@VmModels/*": [
-				"app/modules/vm/models/*"
-			],
-			"@VmComponents/*": [
-				"app/modules/vm/components/*"
+			"@vm/*": [
+				"app/modules/vm/*"
 			],
 			"@services/*": [
 				"app/modules/shared/services/*"
