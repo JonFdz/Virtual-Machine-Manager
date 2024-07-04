@@ -1,5 +1,7 @@
 # VirtualMachineManager
 
+A simple WebApp on Angular for virtual machines management.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.1.3.
 
 ## Development server
