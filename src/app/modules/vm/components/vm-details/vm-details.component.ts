@@ -9,7 +9,7 @@ import { VirtualMachine } from '@vm/models/vm.model';
 	styleUrls: ['./vm-details.component.scss']
 })
 export class VmDetailsComponent implements OnInit {
-	vm: VirtualMachine | undefined;
+	vm: VirtualMachine = {} as VirtualMachine;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -23,5 +23,13 @@ export class VmDetailsComponent implements OnInit {
 				this.vm = data;
 			});
 		}
+	}
+
+	editVm(id: number): void {
+		// Edit VM
+	}
+
+	deleteVm(id: number): void {
+		// Delete VM
 	}
 }

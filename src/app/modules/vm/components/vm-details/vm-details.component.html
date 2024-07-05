@@ -1,1 +1,51 @@
-<p>vm-details works!</p>
+<div class="container">
+    <h2>Detalles de la Máquina Virtual</h2>
+
+    <div class="details">
+        <div class="detail-item">
+            <label>ID:</label>
+            <span>{{ vm.id }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Nombre de la VM:</label>
+            <span>{{ vm.vmName }}</span>
+        </div>
+        <div class="detail-item">
+            <label>IP:</label>
+            <span>{{ vm.ip }}</span>
+        </div>
+        <div class="detail-item">
+            <label>DNS Name:</label>
+            <span>{{ vm.dnsName }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Proyecto:</label>
+            <span>{{ vm.project }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Entorno:</label>
+            <span>{{ vm.environment }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Estado:</label>
+            <span>{{ vm.status }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Comentario:</label>
+            <span>{{ vm.comment }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Reservado Hasta:</label>
+            <span>{{ vm.reservedTo | date : "short" }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Actualizado en:</label>
+            <span>{{ vm.updatedAt | date : "short" }}</span>
+        </div>
+    </div>
+
+    <div class="actions">
+        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">Editar</button>
+        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">Eliminar</button>
+    </div>
+</div>
