@@ -57,6 +57,8 @@ export class VmFormComponent implements OnInit {
 					this.router.navigate(['/']);
 				});
 			} else {
+				this.vmForm.value.createdAt = new Date();
+				this.vmForm.value.updatedAt = new Date();
 				this.vmService.createVm(this.vmForm.value).subscribe(() => {
 					this.router.navigate(['/']);
 				});
