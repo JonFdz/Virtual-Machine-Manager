@@ -7,7 +7,7 @@ import { VirtualMachine } from '@vm/models/vm.model';
 	providedIn: 'root'
 })
 export class VmService {
-	private apiUrl = 'http://tu-backend-api.com/vms';  // Cambia esto por la URL de tu backend
+	private apiUrl = 'http://localhost:3000/api/vms/';  // Cambia esto por la URL de tu backend
 
 	constructor(private http: HttpClient) { }
 
@@ -15,7 +15,7 @@ export class VmService {
 		return this.http.get<VirtualMachine[]>(this.apiUrl);
 	}
 
-	getVm(id: string): Observable<VirtualMachine> {
+	getVm(id: number): Observable<VirtualMachine> {
 		return this.http.get<VirtualMachine>(`${this.apiUrl}/${id}`);
 	}
 
@@ -23,11 +23,11 @@ export class VmService {
 		return this.http.post<VirtualMachine>(this.apiUrl, vm);
 	}
 
-	updateVm(id: string, vm: VirtualMachine): Observable<VirtualMachine> {
+	updateVm(id: number, vm: VirtualMachine): Observable<VirtualMachine> {
 		return this.http.put<VirtualMachine>(`${this.apiUrl}/${id}`, vm);
 	}
 
-	deleteVm(id: string): Observable<void> {
+	deleteVm(id: number): Observable<void> {
 		return this.http.delete<void>(`${this.apiUrl}/${id}`);
 	}
 }

@@ -12,7 +12,7 @@ import { VirtualMachine } from '@vm/models/vm.model';
 export class VmFormComponent implements OnInit {
 	vmForm: FormGroup;
 	isEdit: boolean = false;
-	vmId: string | null = null;
+	vmId: number | null = null;
 
 	constructor(
 		private fb: FormBuilder,
@@ -28,7 +28,7 @@ export class VmFormComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.vmId = this.route.snapshot.paramMap.get('id');
+		this.vmId = 1;
 		if (this.vmId) {
 			this.isEdit = true;
 			this.vmService.getVm(this.vmId).subscribe(data => {
