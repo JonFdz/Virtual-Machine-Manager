@@ -1,1 +1,35 @@
-<p>vm-list works!</p>
+<div class="container">
+    <h2>Lista de Máquinas Virtuales</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>IP</th>
+                <th>DNS</th>
+                <th>Proyecto</th>
+                <th>Entorno</th>
+                <th>Estado</th>
+                <th>Reservado Desde</th>
+                <th>Reservado Hasta</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let vm of vms">
+                <td>{{ vm.vmName }}</td>
+                <td>{{ vm.ip }}</td>
+                <td>{{ vm.dnsName }}</td>
+                <td>{{ vm.project }}</td>
+                <td>{{ vm.environment }}</td>
+                <td>{{ vm.status }}</td>
+                <td>{{ vm.reservedFrom === undefined ? null : vm.reservedFrom | dateFormatter }}</td>
+                <td>{{ vm.reservedTo === undefined ? null : vm.reservedTo | dateFormatter }}</td>
+                <td class="actions">
+                    <button (click)="viewDetails(vm.id)">Detalles</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+	<button (click)="createVm()" class="btn btn-primary">Crear Nueva Máquina Virtual</button>
+</div>
