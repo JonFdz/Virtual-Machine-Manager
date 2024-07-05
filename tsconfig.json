@@ -28,9 +28,9 @@
 			"@vm/*": [
 				"app/modules/vm/*"
 			],
-			"@services/*": [
-				"app/modules/shared/services/*"
-			]
+			"@shared/*": [
+				"app/modules/shared/*"
+			],
 		}
 	},
 	"angularCompilerOptions": {
