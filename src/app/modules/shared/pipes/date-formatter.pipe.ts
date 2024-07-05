@@ -1,14 +1,24 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { DatePipe } from '@angular/common';
 
 @Pipe({
-	name: 'dateFormatter'
+	name: 'dateFormatter',
+	standalone: true
 })
 export class DateFormatterPipe implements PipeTransform {
 
-	constructor(private datePipe: DatePipe) { }
-
 	transform(value: Date | string | number, format: string = 'short'): string | null {
-		return this.datePipe.transform(value, format);
+		if (!value) return null;
+
+		const date = new Date(value);
+		// Ejemplo de formateo simple, ajusta según necesites
+		const day = date.getDate().toString().padStart(2, '0');
+		const month = (date.getMonth() + 1).toString().padStart(2, '0');
+		const year = date.getFullYear();
+
+		if (format === 'short') {
+			return `${day}/${month}/${year}`;
+		}
+		// Agrega más formatos según necesites
+		return date.toISOString();
 	}
 }
