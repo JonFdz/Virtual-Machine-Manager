@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VmService } from '@vm/services/vm.service';
 import { VirtualMachine } from '@vm/models/vm.model';
 import { DateFormatterPipe } from '@shared/pipes/date-formatter.pipe';
@@ -9,30 +9,37 @@ import { DateFormatterPipe } from '@shared/pipes/date-formatter.pipe';
 	templateUrl: './vm-details.component.html',
 	styleUrls: ['./vm-details.component.scss'],
 	standalone: true,
-	imports: [ DateFormatterPipe ]
+	imports: [DateFormatterPipe]
 })
 export class VmDetailsComponent implements OnInit {
 	vm: VirtualMachine = {} as VirtualMachine;
 
 	constructor(
 		private route: ActivatedRoute,
+		private router: Router,
 		private vmService: VmService,
 	) { }
 
 	ngOnInit(): void {
-		const id = 1;
+		const id = this.route.snapshot.paramMap.get('id');
 		if (id) {
-			this.vmService.getVm(id).subscribe(data => {
+			this.vmService.getVm(+id).subscribe(data => {
 				this.vm = data;
 			});
 		}
 	}
 
 	editVm(id: number): void {
-		// Edit VM
+		if (id) {
+			this.router.navigate(['../edit', id], { relativeTo: this.route });
+		}
 	}
 
 	deleteVm(id: number): void {
-		// Delete VM
+		if (id) {
+			this.vmService.deleteVm(id).subscribe(() => {
+				this.router.navigate(['/']);
+			});
+		}
 	}
 }
