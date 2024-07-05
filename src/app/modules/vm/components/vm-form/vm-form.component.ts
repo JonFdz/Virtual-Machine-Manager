@@ -1,18 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { VmService } from '@vm/services/vm.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { VirtualMachine } from '@vm/models/vm.model';
+
 
 @Component({
 	selector: 'app-vm-form',
 	templateUrl: './vm-form.component.html',
-	styleUrls: ['./vm-form.component.scss']
+	styleUrls: ['./vm-form.component.scss'],
+	standalone: true,
+	imports: [ ReactiveFormsModule ]
 })
 export class VmFormComponent implements OnInit {
 	vmForm: FormGroup;
 	isEdit: boolean = false;
-	vmId: number | null = null;
+	vmId: string | null = null;
 
 	constructor(
 		private fb: FormBuilder,
@@ -21,26 +23,37 @@ export class VmFormComponent implements OnInit {
 		private router: Router
 	) {
 		this.vmForm = this.fb.group({
-			name: ['', Validators.required],
-			status: ['', Validators.required]
-			// Otros campos relevantes
+			vmName: [null, Validators.required],
+			ip: [null, Validators.required],
+			dnsName: [null, Validators.required],
+			project: [null],
+			environment: [null],
+			status: [null, Validators.required],
+			comment: [null],
+			reservedTo: [null],
+			operatingSystem: [null],
+			cpuCores: [null],
+			ram: [null],
+			disk: [null]
 		});
 	}
 
 	ngOnInit(): void {
-		this.vmId = 1;
+		this.vmId = this.route.snapshot.paramMap.get('id');
 		if (this.vmId) {
 			this.isEdit = true;
-			this.vmService.getVm(this.vmId).subscribe(data => {
+			this.vmService.getVm(+this.vmId).subscribe(data => {
 				this.vmForm.patchValue(data);
 			});
 		}
 	}
 
 	onSubmit(): void {
+
 		if (this.vmForm.valid) {
 			if (this.isEdit && this.vmId) {
-				this.vmService.updateVm(this.vmId, this.vmForm.value).subscribe(() => {
+				this.vmForm.value.updatedAt = new Date();
+				this.vmService.updateVm(+this.vmId, this.vmForm.value).subscribe(() => {
 					this.router.navigate(['/']);
 				});
 			} else {

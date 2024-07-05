@@ -1,1 +1,64 @@
-<p>vm-form works!</p>
+<div class="container">
+    <h2>{{ vmId ? "Editar Máquina Virtual" : "Crear Máquina Virtual" }}</h2>
+
+    <form [formGroup]="vmForm" (ngSubmit)="onSubmit()">
+        <div>
+            <label for="vmName">VM Name:</label>
+            <input type="text" id="vmName" formControlName="vmName" required />
+        </div>
+        <div>
+            <label for="ip">IP:</label>
+            <input type="text" id="ip" formControlName="ip" required />
+        </div>
+        <div>
+            <label for="dnsName">DNS Name:</label>
+            <input
+                type="text"
+                id="dnsName"
+                formControlName="dnsName"
+                required
+            />
+        </div>
+        <div>
+            <label for="project">Project:</label>
+            <input type="text" id="project" formControlName="project" />
+        </div>
+        <div>
+            <label for="environment">Environment:</label>
+            <input type="text" id="environment" formControlName="environment" />
+        </div>
+        <div>
+            <label for="status">Status:</label>
+            <input type="text" id="status" formControlName="status" required />
+        </div>
+        <div>
+            <label for="comment">Comment:</label>
+            <textarea id="comment" formControlName="comment"></textarea>
+        </div>
+        <div>
+            <label for="reservedTo">Reserved To:</label>
+            <input type="text" id="reservedTo" formControlName="reservedTo" />
+        </div>
+        <div>
+            <label for="operatingSystem">Operating System:</label>
+            <input
+                type="text"
+                id="operatingSystem"
+                formControlName="operatingSystem"
+            />
+        </div>
+        <div>
+            <label for="cpuCores">CPU Cores:</label>
+            <input type="number" id="cpuCores" formControlName="cpuCores" />
+        </div>
+        <div>
+            <label for="ram">RAM (GB):</label>
+            <input type="number" id="ram" formControlName="ram" />
+        </div>
+        <div>
+            <label for="disk">Disk (GB):</label>
+            <input type="number" id="disk" formControlName="disk" />
+        </div>
+        <button type="submit" [disabled]="vmForm.pristine">{{ vmId ? 'Actualizar' : 'Crear' }}</button>
+    </form>
+</div>
