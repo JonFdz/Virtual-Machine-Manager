@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { VmComponent } from '@vm/vm.component';
 
 @Component({
 	selector: 'app-root',
 	standalone: true,
-	imports: [RouterOutlet],
+	imports: [RouterOutlet, VmComponent],
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.scss'
 })
