@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { VmService } from '@services/vm.service';
+import { VmService } from '@vm/services/vm.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { VirtualMachine } from '@vm/models/vm.model';
 
 @Component({
   selector: 'app-vm-form',
   templateUrl: './vm-form.component.html',
-  styleUrls: ['./vm-form.component.css']
+  styleUrls: ['./vm-form.component.scss']
 })
 export class VmFormComponent implements OnInit {
   vmForm: FormGroup;

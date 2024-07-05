@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { vmRoutes } from './modules/vm/vm.routes';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/vms', pathMatch: 'full' },
   ...vmRoutes
 ];

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { VirtualMachine } from '@VmModels/vm.model';
+import { VirtualMachine } from '@vm/models/vm.model';
 
 @Injectable({
 	providedIn: 'root'
