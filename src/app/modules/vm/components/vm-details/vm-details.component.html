@@ -35,17 +35,45 @@
             <span>{{ vm.comment }}</span>
         </div>
         <div class="detail-item">
+            <label>Reservado Desde:</label>
+            <span>{{ vm.reservedFrom === undefined ? null : vm.reservedFrom | dateFormatter }}</span>
+        </div>
+        <div class="detail-item">
             <label>Reservado Hasta:</label>
-            <span>{{ vm.reservedTo | date : "short" }}</span>
+            <span>{{ vm.reservedTo === undefined ? null : vm.reservedTo | dateFormatter }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Sistema Operativo:</label>
+            <span>{{ vm.operatingSystem }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Núcleos de CPU:</label>
+            <span>{{ vm.cpuCores }}</span>
+        </div>
+        <div class="detail-item">
+            <label>RAM (GB):</label>
+            <span>{{ vm.ram }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Disco (GB):</label>
+            <span>{{ vm.disk }}</span>
+        </div>
+        <div class="detail-item">
+            <label>Creado en:</label>
+            <span>{{ vm.createdAt === undefined ? null : vm.createdAt | dateFormatter }}</span>
         </div>
         <div class="detail-item">
             <label>Actualizado en:</label>
-            <span>{{ vm.updatedAt | date : "short" }}</span>
+            <span>{{ vm.updatedAt === undefined ? null : vm.updatedAt | dateFormatter }}</span>
         </div>
     </div>
 
     <div class="actions">
-        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">Editar</button>
-        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">Eliminar</button>
+        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">
+            Editar
+        </button>
+        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">
+            Eliminar
+        </button>
     </div>
 </div>
