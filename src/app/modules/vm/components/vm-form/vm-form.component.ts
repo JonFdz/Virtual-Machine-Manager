@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
-import { VmService } from '@vm/services/vm.service';
+import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+
+import { VmService } from '@vm/services/vm.service';
+import { VmStatus } from '@shared/interfaces/vm.interfaces';
+
 
 
 @Component({
@@ -9,12 +13,13 @@ import { ActivatedRoute, Router } from '@angular/router';
 	templateUrl: './vm-form.component.html',
 	styleUrls: ['./vm-form.component.scss'],
 	standalone: true,
-	imports: [ ReactiveFormsModule ]
+	imports: [ReactiveFormsModule, CommonModule]
 })
 export class VmFormComponent implements OnInit {
 	vmForm: FormGroup;
 	isEdit: boolean = false;
 	vmId: string | null = null;
+	vmStatuses = Object.values(VmStatus);
 
 	constructor(
 		private fb: FormBuilder,
@@ -30,9 +35,11 @@ export class VmFormComponent implements OnInit {
 			environment: [null],
 			status: [null, Validators.required],
 			comment: [null],
+			reservedUserName: [null],
 			reservedTo: [null],
 			operatingSystem: [null],
 			cpuCores: [null],
+			gpu: [null],
 			ram: [null],
 			disk: [null]
 		});
