@@ -5,7 +5,7 @@ import { VmFormComponent } from '@vm/components/vm-form/vm-form.component';
 
 export const vmRoutes: Routes = [
 	{ path: 'vms', component: VmListComponent },
-	{ path: 'vms/create', component: VmFormComponent },
+	{ path: 'vms/register', component: VmFormComponent },
 	{ path: 'vms/edit/:id', component: VmFormComponent },
 	{ path: 'vms/:id', component: VmDetailsComponent }
 ];
