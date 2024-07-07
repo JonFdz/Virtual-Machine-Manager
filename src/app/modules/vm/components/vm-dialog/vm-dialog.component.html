@@ -1,0 +1,36 @@
+<div class="backdrop" (click)="closeDialog()"></div>
+<div class="dialog-container">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            @if (contentToShow === 'Details') {
+            <app-vm-details />
+            }
+
+            <div class="modal-footer">
+                @if (vmId !== 0){
+                <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="openReserve()"
+                >
+                    Reservar
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    (click)="openEdit()"
+                >
+                    Editar
+                </button>
+                <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteVm()"
+                >
+                    Eliminar
+                </button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
