@@ -1,0 +1,107 @@
+<div class="backdrop" (click)="closeDialog()"></div>
+
+<div class="dialog-container">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Reservar Máquina Virtual</h5>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="detail-item">
+                                <label class="d-block">Nombre de la VM: </label>
+                                <span>{{ vm.vmName }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">IP: </label>
+                                <span>{{ vm.ip }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">DNS Name: </label>
+                                <span>{{ vm.dnsName }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Proyecto: </label>
+                                <span>{{ vm.project }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Entorno: </label>
+                                <span>{{ vm.environment }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Estado: </label>
+                                <span>{{ vm.status }}</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="detail-item">
+                                <label class="d-block">Comentario: </label>
+                                <span>{{ vm.comment }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Reservado Desde: </label>
+                                <span>{{
+                                    vm.reservedFrom
+                                        ? (vm.reservedFrom)
+                                        : "N/A"
+                                }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Reservado Hasta: </label>
+                                <span>{{
+                                    vm.reservedTo
+                                        ? (vm.reservedTo)
+                                        : "N/A"
+                                }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Sistema Operativo: </label>
+                                <span>{{ vm.operatingSystem }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Núcleos de CPU: </label>
+                                <span>{{ vm.cpuCores }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">RAM (GB): </label>
+                                <span>{{ vm.ram }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Disco (GB): </label>
+                                <span>{{ vm.disk }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Creado en: </label>
+                                <span>{{
+                                    vm.createdAt
+                                        ? (vm.createdAt)
+                                        : "N/A"
+                                }}</span>
+                            </div>
+                            <div class="detail-item">
+                                <label class="d-block">Actualizado en: </label>
+                                <span>{{
+                                    vm.updatedAt
+                                        ? (vm.updatedAt)
+                                        : "N/A"
+                                }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button
+                    type="button"
+                    class="btn btn-danger"
+					(click)="closeReserveDialog()"
+                >
+                    Volver
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
