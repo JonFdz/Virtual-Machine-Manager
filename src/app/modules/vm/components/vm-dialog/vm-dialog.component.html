@@ -3,10 +3,16 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             @if (contentToShow === 'Details') {
-            <app-vm-details />
-            }
+            	<app-vm-details [vmId]="vmId"/>
+			}
+			@if (contentToShow === 'Edit') {
+				<app-vm-edit [vmId]="vmId"/>
+			}
+			@if (contentToShow === 'Reserve') {
+				<app-vm-reserve [vmId]="vmId"/>
+			}
 
-            <div class="modal-footer">
+            <div class="modal-footer d-flex justify-content-center">
                 @if (vmId !== 0){
                 <button
                     type="button"
