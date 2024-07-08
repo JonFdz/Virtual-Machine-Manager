@@ -1,75 +1,97 @@
-<div class="container">
-    <h2>Detalles de la Máquina Virtual</h2>
-
-    <div class="details">
-        <div class="detail-item">
-            <label>Nombre de la VM:</label>
-            <span>{{ vm.vmName }}</span>
+<div class="modal-header">
+    <h5 class="modal-title">Detalles de la Máquina Virtual</h5>
+    <button
+        type="button"
+        class="btn-close"
+        aria-label="Close"
+        (click)="closeDialog()"
+    ></button>
+</div>
+<div class="modal-body">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="detail-item">
+                    <label class="d-block">Nombre de la VM: </label>
+                    <span>{{ vm.vmName }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">IP: </label>
+                    <span>{{ vm.ip }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">DNS Name: </label>
+                    <span>{{ vm.dnsName }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Proyecto: </label>
+                    <span>{{ vm.project }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Entorno: </label>
+                    <span>{{ vm.environment }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Estado: </label>
+                    <span>{{ vm.status }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Comentario: </label>
+                    <span>{{ vm.comment }}</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="detail-item">
+                    <label class="d-block">Reservado Por: </label>
+                    <span>{{ vm.reservedUserName }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Reservado Desde: </label>
+                    <span>{{
+                        vm.reservedFrom
+                            ? (vm.reservedFrom | date : "short")
+                            : "N/A"
+                    }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Reservado Hasta: </label>
+                    <span>{{
+                        vm.reservedTo ? (vm.reservedTo | date : "short") : "N/A"
+                    }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Sistema Operativo: </label>
+                    <span>{{ vm.operatingSystem }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Núcleos de CPU: </label>
+                    <span>{{ vm.cpuCores }}</span>
+                </div>
+                <div class="detail.item">
+                    <label class="d-block">GPU: </label>
+                    <span>{{ vm.gpu }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">RAM (GB): </label>
+                    <span>{{ vm.ram }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Disco (GB): </label>
+                    <span>{{ vm.disk }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Creado en: </label>
+                    <span>{{
+                        vm.createdAt ? (vm.createdAt | date : "short") : "N/A"
+                    }}</span>
+                </div>
+                <div class="detail-item">
+                    <label class="d-block">Actualizado en: </label>
+                    <span>{{
+                        vm.updatedAt ? (vm.updatedAt | date : "short") : "N/A"
+                    }}</span>
+                </div>
+            </div>
         </div>
-        <div class="detail-item">
-            <label>IP:</label>
-            <span>{{ vm.ip }}</span>
-        </div>
-        <div class="detail-item">
-            <label>DNS Name:</label>
-            <span>{{ vm.dnsName }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Proyecto:</label>
-            <span>{{ vm.project }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Entorno:</label>
-            <span>{{ vm.environment }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Estado:</label>
-            <span>{{ vm.status }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Comentario:</label>
-            <span>{{ vm.comment }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Reservado Desde:</label>
-            <span>{{ vm.reservedFrom === undefined ? null : vm.reservedFrom | dateFormatter }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Reservado Hasta:</label>
-            <span>{{ vm.reservedTo === undefined ? null : vm.reservedTo | dateFormatter }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Sistema Operativo:</label>
-            <span>{{ vm.operatingSystem }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Núcleos de CPU:</label>
-            <span>{{ vm.cpuCores }}</span>
-        </div>
-        <div class="detail-item">
-            <label>RAM (GB):</label>
-            <span>{{ vm.ram }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Disco (GB):</label>
-            <span>{{ vm.disk }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Creado en:</label>
-            <span>{{ vm.createdAt === undefined ? null : vm.createdAt | dateFormatter }}</span>
-        </div>
-        <div class="detail-item">
-            <label>Actualizado en:</label>
-            <span>{{ vm.updatedAt === undefined ? null : vm.updatedAt | dateFormatter }}</span>
-        </div>
-    </div>
-
-    <div class="actions">
-        <button (click)="vm.id !== undefined ? editVm(vm.id) : null">
-            Editar
-        </button>
-        <button (click)="vm.id !== undefined ? deleteVm(vm.id) : null">
-            Eliminar
-        </button>
     </div>
 </div>

@@ -1,45 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Inject, input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+
 import { VmService } from '@vm/services/vm.service';
 import { VirtualMachine } from '@vm/models/vm.model';
-import { DateFormatterPipe } from '@shared/pipes/date-formatter.pipe';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 
 @Component({
 	selector: 'app-vm-details',
 	templateUrl: './vm-details.component.html',
 	styleUrls: ['./vm-details.component.scss'],
 	standalone: true,
-	imports: [DateFormatterPipe]
+	imports: [CommonModule]
 })
 export class VmDetailsComponent implements OnInit {
 	vm: VirtualMachine = {} as VirtualMachine;
+	vmId = input<number>();
 
 	constructor(
-		private route: ActivatedRoute,
-		private router: Router,
-		private vmService: VmService,
+		private vmService: VmService, private dialog: MatDialogRef<VmDetailsComponent>
 	) { }
 
 	ngOnInit(): void {
-		const id = this.route.snapshot.paramMap.get('id');
-		if (id) {
-			this.vmService.getVm(+id).subscribe(data => {
+		if (this.vmId()) {
+			this.vmService.getVm(this.vmId()!).subscribe(data => {
 				this.vm = data;
 			});
 		}
 	}
 
-	editVm(id: number): void {
-		if (id) {
-			this.router.navigate(['../edit', id], { relativeTo: this.route });
-		}
-	}
-
-	deleteVm(id: number): void {
-		if (id) {
-			this.vmService.deleteVm(id).subscribe(() => {
-				this.router.navigate(['/']);
-			});
-		}
+	closeDialog(): void {
+		this.dialog.close();
 	}
 }
