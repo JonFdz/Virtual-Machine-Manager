@@ -1,11 +1,11 @@
 <div class="container mt-5">
     <h2 class="text-center mb-4">
-        {{ vmId ? "Editar Máquina Virtual" : "Crear Máquina Virtual" }}
+        Registro de Nueva Máquina Virtual
     </h2>
 
     <form [formGroup]="vmForm" (ngSubmit)="onSubmit()">
         <div class="form-group mb-3">
-            <label for="vmName">VM Name:</label>
+            <label for="vmName">VM Name: *Required</label>
             <input
                 class="form-control"
                 type="text"
@@ -15,7 +15,7 @@
             />
         </div>
         <div>
-            <label for="ip">IP:</label>
+            <label for="ip">IP: *Required</label>
             <input
                 class="form-control"
                 type="text"
@@ -25,7 +25,7 @@
             />
         </div>
         <div class="form-group mb-3">
-            <label for="dnsName">DNS Name:</label>
+            <label for="dnsName">DNS Name: *Required</label>
             <input
                 class="form-control"
                 type="text"
@@ -53,7 +53,7 @@
             ></textarea>
         </div>
         <div class="form-group mb-3">
-            <label for="status">Status:</label>
+            <label for="status">Status: *Required</label>
             <select
                 class="form-control"
                 id="status"
@@ -71,26 +71,6 @@
                 formControlName="comment"
             ></textarea>
         </div>
-        @if (vmId) {
-		<div class="form-group mb-3">
-			<label for="reservedUserName">Reserved User Name:</label>
-			<input
-				class="form-control"
-				type="text"
-				id="reservedUserName"
-				formControlName="reservedUserName"
-			/>
-		</div>
-        <div class="form-group mb-3">
-            <label for="reservedTo">Reserved To:</label>
-            <input
-                class="form-control"
-                type="text"
-                id="reservedTo"
-                formControlName="reservedTo"
-            />
-        </div>
-        }
         <div class="form-group mb-3">
             <label for="operatingSystem">Operating System:</label>
             <input
@@ -138,10 +118,10 @@
         </div>
         <button
             type="submit"
-            [disabled]="vmId ? vmForm.pristine : !vmForm.valid"
+            [disabled]="!vmForm.valid"
             class="btn btn-primary"
         >
-            {{ vmId ? "Actualizar" : "Crear" }}
+            Crear
         </button>
     </form>
 </div>
