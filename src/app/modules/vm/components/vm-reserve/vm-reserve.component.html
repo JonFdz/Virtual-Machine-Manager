@@ -1,107 +1,69 @@
-<div class="backdrop" (click)="closeDialog()"></div>
-
-<div class="dialog-container">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Reservar Máquina Virtual</h5>
-            </div>
-            <div class="modal-body">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <div class="detail-item">
-                                <label class="d-block">Nombre de la VM: </label>
-                                <span>{{ vm.vmName }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">IP: </label>
-                                <span>{{ vm.ip }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">DNS Name: </label>
-                                <span>{{ vm.dnsName }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Proyecto: </label>
-                                <span>{{ vm.project }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Entorno: </label>
-                                <span>{{ vm.environment }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Estado: </label>
-                                <span>{{ vm.status }}</span>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="detail-item">
-                                <label class="d-block">Comentario: </label>
-                                <span>{{ vm.comment }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Reservado Desde: </label>
-                                <span>{{
-                                    vm.reservedFrom
-                                        ? (vm.reservedFrom)
-                                        : "N/A"
-                                }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Reservado Hasta: </label>
-                                <span>{{
-                                    vm.reservedTo
-                                        ? (vm.reservedTo)
-                                        : "N/A"
-                                }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Sistema Operativo: </label>
-                                <span>{{ vm.operatingSystem }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Núcleos de CPU: </label>
-                                <span>{{ vm.cpuCores }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">RAM (GB): </label>
-                                <span>{{ vm.ram }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Disco (GB): </label>
-                                <span>{{ vm.disk }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Creado en: </label>
-                                <span>{{
-                                    vm.createdAt
-                                        ? (vm.createdAt)
-                                        : "N/A"
-                                }}</span>
-                            </div>
-                            <div class="detail-item">
-                                <label class="d-block">Actualizado en: </label>
-                                <span>{{
-                                    vm.updatedAt
-                                        ? (vm.updatedAt)
-                                        : "N/A"
-                                }}</span>
-                            </div>
-                        </div>
+<div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Reservar Máquina Virtual</h5>
+        </div>
+        <div class="modal-body">
+            <div class="container">
+                <form [formGroup]="vmForm">
+                    <div class="form-item mb-3">
+                        <label for="username" class="form-label"
+                            >Nombre de Usuario</label
+                        >
+                        <input
+                            type="text"
+                            id="reservedUserName"
+                            formControlName="reservedUserName"
+                            class="form-control"
+                            required
+                        />
                     </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button
-                    type="button"
-                    class="btn btn-danger"
-					(click)="closeReserveDialog()"
-                >
-                    Volver
-                </button>
+
+                    <div class="form-item mb-3">
+                        <label for="reservedTo" class="form-label"
+                            >Reservado Hasta</label
+                        >
+                        <input
+                            type="datetime-local"
+                            id="reservedTo"
+                            formControlName="reservedTo"
+                            class="form-control"
+                            required
+                        />
+                    </div>
+
+                    <div class="form-item mb-3">
+                        <label for="project" class="form-label"
+                            >Proyecto (opcional)</label
+                        >
+                        <input
+                            class="form-control"
+                            type="text"
+                            id="project"
+                            formControlName="project"
+                        />
+                    </div>
+
+                    <div class="form-item mb-3">
+                        <label for="comment" class="form-label"
+                            >Comentario (opcional)</label
+                        >
+                        <textarea
+                            id="comment"
+                            formControlName="comment"
+                            class="form-control"
+                        ></textarea>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
+<div class="modal-footer d-flex justify-content-center">
+    <button type="button" class="btn btn-danger" (click)="onReturnToDetails()">
+        Volver
+    </button>
+    <button type="submit" class="btn btn-primary" [disabled]="!vmForm.valid" (click)="onSubmit()">
+        Enviar
+    </button>
+</div>
