@@ -4,7 +4,7 @@
         type="button"
         class="btn-close"
         aria-label="Close"
-        (click)="closeDialog()"
+        (click)="onCloseDialog()"
     ></button>
 </div>
 <div class="modal-body">
@@ -94,4 +94,21 @@
             </div>
         </div>
     </div>
+</div>
+<div class="modal-footer d-flex justify-content-center">
+    @if (vm.status !== vmStatus.Reserved) {
+    <button type="button" class="btn btn-success" (click)="onShowReserve()">
+        Reservar
+    </button>
+    } @else {
+    <button type="button" class="btn btn-success" (click)="releaseVm()">
+        Liberar
+    </button>
+    }
+    <button type="button" class="btn btn-primary" (click)="onShowEdit()">
+        Editar
+    </button>
+    <button type="button" class="btn btn-danger" (click)="deleteVm()">
+        Eliminar
+    </button>
 </div>

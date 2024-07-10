@@ -1,9 +1,9 @@
-import { Component, Inject, input, OnInit } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { VmService } from '@vm/services/vm.service';
 import { VirtualMachine } from '@vm/models/vm.model';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { VmStatus } from '@shared/interfaces/vm.interfaces';
 
 
 @Component({
@@ -16,9 +16,13 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class VmDetailsComponent implements OnInit {
 	vm: VirtualMachine = {} as VirtualMachine;
 	vmId = input<number>();
+	showReserve = output<void>();
+	showEdit = output<void>();
+	closeDialog = output<void>();
+	vmStatus = VmStatus;
 
 	constructor(
-		private vmService: VmService, private dialog: MatDialogRef<VmDetailsComponent>
+		private vmService: VmService
 	) { }
 
 	ngOnInit(): void {
@@ -29,7 +33,32 @@ export class VmDetailsComponent implements OnInit {
 		}
 	}
 
-	closeDialog(): void {
-		this.dialog.close();
+	onShowReserve(): void {
+		this.showReserve.emit();
+	}
+
+	onShowEdit(): void {
+		this.showEdit.emit();
+	}
+
+	onCloseDialog(): void {
+		this.closeDialog.emit();
+	}
+
+	releaseVm(): void {
+		this.vm.reservedUserName = null;
+		this.vm.reservedTo = null;
+		this.vm.reservedFrom = null;
+		this.vm.updatedAt = new Date();
+		this.vm.status = VmStatus.Available;
+		this.vmService.updateVm(this.vmId()!, this.vm).subscribe(() => {
+			this.closeDialog.emit();
+		});
+	}
+
+	deleteVm(): void {
+		this.vmService.deleteVm(this.vmId()!).subscribe(() => {
+			this.closeDialog.emit();
+		});
 	}
 }
