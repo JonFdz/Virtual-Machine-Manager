@@ -22,26 +22,25 @@ export enum DialogType {
 export class VmDialogComponent implements OnInit {
 	contentToShow = '';
 	vmId = 0;
+	dialogType = DialogType;
 
 	constructor(private dialogRef: MatDialogRef<VmDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: number, private vmService: VmService) { }
 
 	ngOnInit(): void {
 		this.vmId = this.data;
-		this.contentToShow = DialogType.Details;
+		this.contentToShow = this.dialogType.Details;
 	}
 
-	openReserve(): void {
-		this.contentToShow = DialogType.Reserve;
+	showDetails(): void {
+		this.contentToShow = this.dialogType.Details
 	}
 
-	openEdit(): void {
-		this.contentToShow = DialogType.Details;
+	showReserve(): void {
+		this.contentToShow = this.dialogType.Reserve;
 	}
 
-	deleteVm(): void {
-		this.vmService.deleteVm(this.vmId).subscribe(() => {
-			this.dialogRef.close();
-		});
+	showEdit(): void {
+		this.contentToShow = this.dialogType.Details;
 	}
 
 	closeDialog(): void {
