@@ -4,15 +4,6 @@
 	background-color: #f4f4f4;
 }
 
-.modal-dialog {
-	max-width: 800px;
-}
-
-.modal-content {
-	border-radius: 8px;
-	box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-}
-
 .modal-header {
 	background-color: $primary-color;
 	color: #f9f9f9;
@@ -32,6 +23,7 @@
 
 .modal-body {
 	padding: 20px;
+	overflow-y: auto;
 }
 
 .modal-footer {

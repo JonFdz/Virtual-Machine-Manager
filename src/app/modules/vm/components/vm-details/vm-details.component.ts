@@ -15,7 +15,7 @@ import { VmStatus } from '@shared/interfaces/vm.interfaces';
 })
 export class VmDetailsComponent implements OnInit {
 	vm: VirtualMachine = {} as VirtualMachine;
-	vmId = input<number>();
+	vmId = input.required<number>();
 	showReserve = output<void>();
 	showEdit = output<void>();
 	closeDialog = output<void>();
@@ -27,7 +27,7 @@ export class VmDetailsComponent implements OnInit {
 
 	ngOnInit(): void {
 		if (this.vmId()) {
-			this.vmService.getVm(this.vmId()!).subscribe(data => {
+			this.vmService.getVm(this.vmId()).subscribe(data => {
 				this.vm = data;
 			});
 		}
@@ -51,7 +51,7 @@ export class VmDetailsComponent implements OnInit {
 		this.vm.reservedFrom = null;
 		this.vm.updatedAt = new Date();
 		this.vm.status = VmStatus.Available;
-		this.vmService.updateVm(this.vmId()!, this.vm).subscribe(() => {
+		this.vmService.updateVm(this.vmId(), this.vm).subscribe(() => {
 			this.closeDialog.emit();
 		});
 	}
