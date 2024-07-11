@@ -40,7 +40,7 @@ export class VmDialogComponent implements OnInit {
 	}
 
 	showEdit(): void {
-		this.contentToShow = this.dialogType.Details;
+		this.contentToShow = this.dialogType.Edit;
 	}
 
 	closeDialog(): void {

@@ -6,7 +6,7 @@
             	<app-vm-details [vmId]="vmId" (showEdit)="showEdit()" (showReserve)="showReserve()" (closeDialog)="closeDialog()" />
 			}
 			@if (contentToShow === dialogType.Edit) {
-				<app-vm-edit [vmId]="vmId" />
+				<app-vm-edit [vmId]="vmId" (returnToDetails)="showDetails()" (closeDialog)="closeDialog()"/>
 			}
 			@if (contentToShow === dialogType.Reserve) {
 				<app-vm-reserve [vmId]="vmId" (returnToDetails)="showDetails()" (closeDialog)="closeDialog()"/>
