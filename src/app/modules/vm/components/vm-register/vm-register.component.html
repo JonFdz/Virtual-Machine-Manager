@@ -1,9 +1,13 @@
 <div class="container mt-5">
-    <h2 class="text-center mb-4">
+	<div class="card">
+		<div class="card-header">
+    <h2 class="text-center mb-4 title">
         Registro de Nueva Máquina Virtual
     </h2>
+	</div>
 
-    <form [formGroup]="vmForm" (ngSubmit)="onSubmit()">
+	<div class="card-body">
+    <form [formGroup]="vmForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
         <div class="form-group mb-3">
             <label for="vmName">VM Name: *Required</label>
             <input
@@ -124,4 +128,5 @@
             Crear
         </button>
     </form>
+	</div>
 </div>

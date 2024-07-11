@@ -32,8 +32,6 @@ export class VmRegisterComponent {
 			environment: [null],
 			status: [null, Validators.required],
 			comment: [null],
-			reservedUserName: [null],
-			reservedTo: [null],
 			operatingSystem: [null],
 			cpuCores: [null],
 			gpu: [null],
