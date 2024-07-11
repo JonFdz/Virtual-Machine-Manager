@@ -1,1 +1,143 @@
-<p>vm-edit works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Editar Máquina Virtual</h5>
+    <button type="button" class="btn-close" (click)="onCloseDialog()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="vmForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+            <label for="vmName"
+                >VM Name: <span class="text-danger">*</span></label
+            >
+            <input
+                class="form-control"
+                type="text"
+                id="vmName"
+                formControlName="vmName"
+                required
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="ip">IP: <span class="text-danger">*</span></label>
+            <input
+                class="form-control"
+                type="text"
+                id="ip"
+                formControlName="ip"
+                required
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="dnsName"
+                >DNS Name: <span class="text-danger">*</span></label
+            >
+            <input
+                class="form-control"
+                type="text"
+                id="dnsName"
+                formControlName="dnsName"
+                required
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="project">Project:</label>
+            <input
+                class="form-control"
+                type="text"
+                id="project"
+                formControlName="project"
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="environment">Environment:</label>
+            <textarea
+                class="form-control"
+                id="environment"
+                formControlName="environment"
+            ></textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label for="status"
+                >Status: <span class="text-danger">*</span></label
+            >
+            <select
+                class="form-control"
+                id="status"
+                formControlName="status"
+                required
+            >
+                <option *ngFor="let status of vmStatuses" [value]="status">
+                    {{ status }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group mb-3">
+            <label for="comment">Comment:</label>
+            <textarea
+                class="form-control"
+                id="comment"
+                formControlName="comment"
+            ></textarea>
+        </div>
+        <div class="form-group mb-3">
+            <label for="operatingSystem">Operating System:</label>
+            <input
+                class="form-control"
+                type="text"
+                id="operatingSystem"
+                formControlName="operatingSystem"
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="cpuCores">CPU Cores:</label>
+            <input
+                class="form-control"
+                type="number"
+                id="cpuCores"
+                formControlName="cpuCores"
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="gpu">GPU:</label>
+            <input
+                class="form-control"
+                type="text"
+                id="gpu"
+                formControlName="gpu"
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="ram">RAM (GB):</label>
+            <input
+                class="form-control"
+                type="number"
+                id="ram"
+                formControlName="ram"
+            />
+        </div>
+        <div class="form-group mb-3">
+            <label for="disk">Disk (GB):</label>
+            <input
+                class="form-control"
+                type="number"
+                id="disk"
+                formControlName="disk"
+            />
+        </div>
+        <div class="modal-footer">
+            <button
+                type="button"
+                class="btn btn-danger"
+				(click)="onReturnToDetails()"
+            >
+                Volver
+            </button>
+            <button
+                type="submit"
+                [disabled]="!vmForm.valid || vmForm.pristine"
+                class="btn btn-primary"
+            >
+                Actualizar
+            </button>
+        </div>
+    </form>
+</div>

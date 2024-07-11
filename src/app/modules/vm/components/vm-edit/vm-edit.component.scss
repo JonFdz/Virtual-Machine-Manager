@@ -1,0 +1,55 @@
+@import 'styles/_variables.scss';
+
+.body {
+	background-color: #f4f4f4;
+}
+
+.modal-header {
+	background-color: $primary-color;
+	color: #f9f9f9;
+	border-top-left-radius: 8px;
+	border-top-right-radius: 8px;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-title {
+	margin: 0;
+	flex-grow: 1;
+	text-align: center;
+}
+
+.modal-body {
+	padding: 20px;
+}
+
+.modal-footer {
+	background-color: #f9f9f9;
+	border-bottom-left-radius: 8px;
+	border-bottom-right-radius: 8px;
+	padding: 10px 20px;
+}
+
+.form-control {
+	border: 1px solid $secondary-color;
+	border-radius: 8px;
+	padding: 10px 15px;
+	transition: border-color 0.3s ease-in-out;
+
+	&:focus {
+		border-color: lighten($primary-color, 10%);
+		box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+	}
+}
+
+.btn {
+	margin: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+.btn-close {
+	margin-left: auto;
+}
